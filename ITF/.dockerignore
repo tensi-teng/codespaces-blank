@@ -1,0 +1,8 @@
+.git
+.venv
+**/__pycache__
+**/.pytest_cache
+dbt/argus_warehouse/target
+dbt/argus_warehouse/logs
+data/generated
+models/*.joblib

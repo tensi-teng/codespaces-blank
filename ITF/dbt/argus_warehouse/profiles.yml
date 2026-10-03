@@ -1,0 +1,12 @@
+argus_warehouse:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DBT_HOST', 'host.docker.internal') }}"
+      user: argus
+      password: argus
+      port: 5432
+      dbname: argus
+      schema: public
+      threads: 4

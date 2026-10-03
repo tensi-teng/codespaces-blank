@@ -1,0 +1,83 @@
+version: 2
+sources:
+  - name: bronze
+    schema: bronze
+    tables:
+      - name: raw_students
+      - name: raw_courses
+      - name: raw_enrollments
+      - name: raw_grades
+      - name: raw_attendance
+models:
+  - name: stg_students
+    columns:
+      - name: student_id
+        tests: [not_null, unique]
+  - name: stg_enrollments
+    columns:
+      - name: enrollment_id
+        tests: [not_null, unique]
+      - name: student_id
+        tests: [not_null]
+      - name: course_code
+        tests: [not_null]
+  - name: stg_courses
+    columns:
+      - name: course_code
+        tests: [not_null, unique]
+  - name: stg_grades
+    columns:
+      - name: enrollment_id
+        tests: [not_null, unique]
+      - name: student_id
+        tests: [not_null]
+      - name: score
+        tests: [not_null]
+  - name: stg_attendance
+    columns:
+      - name: student_id
+        tests: [not_null]
+      - name: attendance_pct
+        tests: [not_null]
+  - name: student_academic_performance
+    columns:
+      - name: student_id
+        tests: [not_null]
+      - name: semester
+        tests: [not_null]
+  - name: dim_students
+    columns:
+      - name: student_id
+        tests: [not_null, unique]
+  - name: dim_courses
+    columns:
+      - name: course_code
+        tests: [not_null, unique]
+  - name: dim_semester
+    columns:
+      - name: semester
+        tests: [not_null, unique]
+  - name: fact_enrollments
+    columns:
+      - name: enrollment_id
+        tests: [not_null, unique]
+      - name: student_id
+        tests: [not_null]
+      - name: course_code
+        tests: [not_null]
+      - name: semester
+        tests: [not_null]
+  - name: fact_grades
+    columns:
+      - name: enrollment_id
+        tests: [not_null, unique]
+      - name: score
+        tests: [not_null]
+  - name: fact_attendance
+    columns:
+      - name: student_id
+        tests: [not_null]
+      - name: course_code
+        tests: [not_null]
+      - name: semester
+        tests: [not_null]

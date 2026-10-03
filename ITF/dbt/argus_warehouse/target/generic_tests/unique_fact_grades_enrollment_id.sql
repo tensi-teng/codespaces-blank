@@ -1,0 +1,1 @@
+{{ test_unique(column_name="enrollment_id", model=get_where_subquery(ref('fact_grades'))) }}

@@ -1,0 +1,16 @@
+name: argus_warehouse
+version: '1.0'
+config-version: 2
+profile: argus_warehouse
+model-paths: ["models"]
+macro-paths: ["macros"]
+models:
+  argus_warehouse:
+    staging:
+      +materialized: view
+      +schema: silver
+    marts:
+      +materialized: table
+      +schema: gold
+      student_academic_performance:
+        +schema: silver

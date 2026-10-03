@@ -1,0 +1,1 @@
+{{ test_unique(column_name="course_code", model=get_where_subquery(ref('stg_courses'))) }}
